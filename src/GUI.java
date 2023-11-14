@@ -1,8 +1,9 @@
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
-public class GUI {
+public class GUI extends Handler {
     
-    public static String getPath(){
+    public String getPath(){
         try{
             var chooser = new JFileChooser();
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -17,5 +18,9 @@ public class GUI {
             System.err.println("Error: " + e.getMessage());
             return null;
         }
+    }
+
+    public void showError(String e){
+        JOptionPane.showMessageDialog(null,e,"Error",JOptionPane.ERROR_MESSAGE);
     }
 }

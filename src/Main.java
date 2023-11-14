@@ -1,15 +1,19 @@
 class Main{
     public static void main(String[] args){
         String targetPath;
-        for (String arg : args){
-            System.out.println(arg);
-        }
-        boolean isGUI = (args.length > 2);
-        if (isGUI){
-            targetPath = args[1];
+        Handler handler;
+
+        if (args.length > 2){
+            handler = new Terminal(args);
         }
         else{
-            targetPath = GUI.getPath();
+            handler = new GUI();
+        }
+
+        targetPath = handler.getPath();
+        if (targetPath == null){
+            handler.showError("Folder selected is not found");
+            return;
         }
 
 
