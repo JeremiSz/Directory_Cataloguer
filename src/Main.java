@@ -19,9 +19,7 @@ class Main{
         }
         var rootDir = new File(targetPath);
         var output = getFiles(rootDir, 0);
-
-
-        System.out.println("success\n" + output);
+        handler.showResult(output);
     }
 
     private static String getFiles(File directory, int depth){
