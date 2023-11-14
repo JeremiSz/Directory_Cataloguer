@@ -1,9 +1,11 @@
+import java.io.File;
+
 class Main{
     public static void main(String[] args){
         String targetPath;
         Handler handler;
 
-        if (args.length > 1){
+        if (args.length > 0){
             handler = new Terminal(args);
         }
         else{
@@ -15,8 +17,34 @@ class Main{
             handler.showError("Folder selected is not found");
             return;
         }
+        var rootDir = new File(targetPath);
+        var output = getFiles(rootDir, 0);
 
 
-        System.out.println("success" + targetPath);
+        System.out.println("success\n" + output);
+    }
+
+    private static String getFiles(File directory, int depth){
+        StringBuilder output = new StringBuilder();
+        for (File file : directory.listFiles()){
+            if (file.isDirectory()){
+                output.append(generateLine(file.getName(), depth));
+                output.append(getFiles(file, depth + 1));
+            }
+            else{
+                output.append(generateLine(file.getName(), depth));
+            }
+        }
+        return output.toString();
+    }
+
+    private static String generateLine(String name, int depth){
+        if (depth < 1){
+            return name + "\n";
+        }
+        if (depth == 1){
+            return "└" + name + "\n";
+        }
+        return "└" + "-".repeat(depth - 1) + name + "\n";
     }
 }
