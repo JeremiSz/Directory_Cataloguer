@@ -24,15 +24,21 @@ class Main{
 
     private static String getFiles(File directory, int depth){
         StringBuilder output = new StringBuilder();
-        for (File file : directory.listFiles()){
-            if (file.isDirectory()){
-                output.append(generateLine(file.getName(), depth));
-                output.append(getFiles(file, depth + 1));
-            }
-            else{
-                output.append(generateLine(file.getName(), depth));
+        try{
+            for (File file : directory.listFiles()){
+                if (file.isDirectory()){
+                    output.append(generateLine(file.getName(), depth));
+                    output.append(getFiles(file, depth + 1));
+                }
+                else{
+                    output.append(generateLine(file.getName(), depth));
+                }
             }
         }
+        catch (NullPointerException e){
+            return "";
+        }
+
         return output.toString();
     }
 
