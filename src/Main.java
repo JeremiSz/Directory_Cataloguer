@@ -3,7 +3,7 @@ class Main{
         String targetPath;
         Handler handler;
 
-        if (args.length > 2){
+        if (args.length > 1){
             handler = new Terminal(args);
         }
         else{
