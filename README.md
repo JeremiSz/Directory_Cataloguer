@@ -1,6 +1,6 @@
 # Directory/Folder Cataloguer
 
-This program can list out all files in a direcotry and all subdirectories. Uses include creating records of documents.
+This program can list out all files in a directory and all subdirectories. Uses include creating records of documents.
 
 ## Usage
 ### GUI
